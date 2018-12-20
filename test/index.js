@@ -16,7 +16,7 @@ const createCallback = (assertFun) => {
 describe('Test1', () => {
   it('should contain sth', () => {
     aikenToMoodleXML(str, (res,err)=>{
-      // console.log(res);
+      console.log(res);
       assert(!!res,true)
     });
   });
