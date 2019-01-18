@@ -27,7 +27,6 @@ const question = (index,{type, question, answers, correctAnswer, useLetters, fee
 }
 
 const questionType = (type, question, answers, correctAnswer, useLetters, feedback, single) => {
-	console.log(type, question, answers, correctAnswer, useLetters, feedback, single)
 	if (type === 'matching' || type === "order"){
 		return `${(answers||[]).map((a,i) => {
 		return `<subquestion>
