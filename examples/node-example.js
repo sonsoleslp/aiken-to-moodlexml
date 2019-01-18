@@ -13,7 +13,5 @@ const callback = (result, error) => {
 		return;
 	}
 	fs.writeFileSync(outputPath, result);
-	// console.log(result);
-
 }
 aikenToMoodleXML(contents, callback); 
