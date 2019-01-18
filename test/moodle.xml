@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+	<question type="category">
+		<category>
+		  <text>__Category Name__</text>
+		</category>
+	</question>
+	<!-- Question entry 0 -->
+	<question type="multichoice">
+		<name>
+		    <text><![CDATA[1. When must a Post Implementation Review take place?]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[1. When must a Post Implementation Review take place?]]></text>
+		</questiontext>
+		
+		<answer fraction="100">
+    		<text><![CDATA[After every Change]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[At the request of the person who submitted the Change request]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[In case of emergency changes]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[If another incident of the same type occurs again after a Change has been made]]></text>
+		</answer>
+			<single>true</single>
+	
+		<generalfeedback><text>Obviously</text></generalfeedback>
+	</question>
+
+	<!-- Question entry 1 -->
+	<question type="multichoice">
+		<name>
+		    <text><![CDATA[2. When an organization decides to control the flow of incident information within the IT organization, ]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[2. When an organization decides to control the flow of incident information within the IT organization, ]]></text>
+		</questiontext>
+		
+		<answer fraction="0">
+    		<text><![CDATA[Availability Management]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[Change Management]]></text>
+		</answer>
+		<answer fraction="100">
+    		<text><![CDATA[Incident Management]]></text>
+		</answer>
+		<answer fraction="100">
+    		<text><![CDATA[Problem Management]]></text>
+		</answer>
+
+	
+		<generalfeedback><text>Duh!</text></generalfeedback>
+	</question>
+
+	<!-- Question entry 2 -->
+	<question type="essay">
+		<name>
+		    <text><![CDATA[3. The new role of social blogging in e-learning.]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[3. The new role of social blogging in e-learning.]]></text>
+		</questiontext>
+		
+
+	
+		<generalfeedback><text>Write something about Twitter, Facebook from the aspects of teaching and colloboration.</text></generalfeedback>
+	</question>
+
+	<!-- Question entry 3 -->
+	<question type="shortanswer">
+		<name>
+		    <text><![CDATA[4. Calculate: 2 + 2 ]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[4. Calculate: 2 + 2 ]]></text>
+		</questiontext>
+		
+		<answer fraction="100">
+    		<text><![CDATA[4]]></text>
+		</answer>
+		<answer fraction="100">
+    		<text><![CDATA[four]]></text>
+		</answer>
+
+	
+		
+	</question>
+
+	<!-- Question entry 4 -->
+	<question type="truefalse">
+		<name>
+		    <text><![CDATA[5. The founder of "Apple" was Steve Jobs.]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[5. The founder of "Apple" was Steve Jobs.]]></text>
+		</questiontext>
+		
+		<answer fraction="100">
+    		<text><![CDATA[True]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[False]]></text>
+		</answer>
+
+	
+		<generalfeedback><text>Steve Jobs is the CEO of Apple, which he co-founded in 1976.</text></generalfeedback>
+	</question>
+
+	<!-- Question entry 5 -->
+	<question type="description">
+		<name>
+		    <text><![CDATA[6. Open Office is the alternative to Microsoft Office.]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[6. Open Office is the alternative to Microsoft Office.]]></text>
+		</questiontext>
+		
+
+	
+		
+	</question>
+
+	<!-- Question entry 6 -->
+	<question type="cloze">
+		<name>
+		    <text><![CDATA[7. Infrastructure <{1:MULTICHOICE:=Monitoring~Controlling~Service} will provide support teams with alerts directly allowing for faster resolution. ]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[7. Infrastructure <{1:MULTICHOICE:=Monitoring~Controlling~Service} will provide support teams with alerts directly allowing for faster resolution. ]]></text>
+		</questiontext>
+		
+
+	
+		
+	</question>
+
+	<!-- Question entry 7 -->
+	<question type="numerical">
+		<name>
+		    <text><![CDATA[8. How many books are in ITIL V3? Answer only with a number.]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[8. How many books are in ITIL V3? Answer only with a number.]]></text>
+		</questiontext>
+		
+		<answer fraction="100">
+    		<text><![CDATA[5]]></text>
+		</answer>
+
+	
+		
+	</question>
+
+	<!-- Question entry 8 -->
+	<question type="matching">
+		<name>
+		    <text><![CDATA[Match cities and countries]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[Match cities and countries]]></text>
+		</questiontext>
+		<subquestion>
+			<text><![CDATA[Yakutsk]]></text>
+			<answer>
+		        <text><![CDATA[Russia]]></text>
+		    </answer>
+		</subquestion><subquestion>
+			<text><![CDATA[Tampere]]></text>
+			<answer>
+		        <text><![CDATA[Finland]]></text>
+		    </answer>
+		</subquestion><subquestion>
+			<text><![CDATA[Harbin]]></text>
+			<answer>
+		        <text><![CDATA[China]]></text>
+		    </answer>
+		</subquestion>
+		<generalfeedback><text>Good job!</text></generalfeedback>
+	</question>
+
+	<!-- Question entry 9 -->
+	<question type="order">
+		<name>
+		    <text><![CDATA[10. Place in ascending order]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[10. Place in ascending order]]></text>
+		</questiontext>
+		<subquestion>
+			<text><![CDATA[200]]></text>
+			<answer>
+		        <text><![CDATA[3]]></text>
+		    </answer>
+		</subquestion><subquestion>
+			<text><![CDATA[500]]></text>
+			<answer>
+		        <text><![CDATA[1]]></text>
+		    </answer>
+		</subquestion><subquestion>
+			<text><![CDATA[100]]></text>
+			<answer>
+		        <text><![CDATA[2]]></text>
+		    </answer>
+		</subquestion>
+		
+	</question>
+
+	<!-- Question entry 10 -->
+	<question type="multichoice">
+		<name>
+		    <text><![CDATA[2. When an organization decides to control the flow of incident information within the IT organization, ]]></text>
+		</name>
+		<questiontext>
+		    <text><![CDATA[2. When an organization decides to control the flow of incident information within the IT organization, ]]></text>
+		</questiontext>
+		
+		<answer fraction="0">
+    		<text><![CDATA[Availability Management]]></text>
+		</answer>
+		<answer fraction="0">
+    		<text><![CDATA[Change Management]]></text>
+		</answer>
+		<answer fraction="100">
+    		<text><![CDATA[Incident Management]]></text>
+		</answer>
+		<answer fraction="100">
+    		<text><![CDATA[Problem Management]]></text>
+		</answer>
+
+		<answernumbering>123</answernumbering>	
+		<generalfeedback><text>Yes!</text></generalfeedback>
+	</question>
+
+</quiz>

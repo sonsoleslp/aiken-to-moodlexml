@@ -4,6 +4,7 @@ B. At the request of the person who submitted the Change request
 C. In case of emergency changes
 D. If another incident of the same type occurs again after a Change has been made
 Answer: A
+Feedback: Obviously
 
 multichoice
 2. When an organization decides to control the flow of incident information within the IT organization, 
@@ -13,6 +14,7 @@ B. Change Management
 C. Incident Management
 D. Problem Management
 Answer: C, D
+gfeed. Duh!
 
 essay
 3. The new role of social blogging in e-learning.
@@ -23,7 +25,7 @@ shortanswer
 Answer: 4, four
 
 truefalse
-5. The founder of "Apple" was Steve Joubs.
+5. The founder of "Apple" was Steve Jobs.
 Answer: True
 Feedback: Steve Jobs is the CEO of Apple, which he co-founded in 1976.
 
@@ -47,6 +49,7 @@ match: Russia
 match: Finland
 3. Harbin
 match: China
+Feedback: Good job!
 
 order
 10. Place in ascending order
@@ -54,3 +57,13 @@ order
 2. 500
 3. 100
 Answer: 3,1,2
+
+multichoice
+2. When an organization decides to control the flow of incident information within the IT organization, 
+which ITIL process would it be putting in place?
+1. Availability Management
+2. Change Management
+3. Incident Management
+4. Problem Management
+Answer: 3,4
+gfeed. Yes!
