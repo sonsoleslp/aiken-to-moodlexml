@@ -1,10 +1,10 @@
 const moodleString = require('./xmlStrings');
 
 const availExercises = ['multichoice', 'essay', 'shortanswer', 'truefalse', 'description', 'cloze', 'numerical', 'matching', 'order'];
-const answerRegex = new RegExp(/^\s*Answer:\s*/);
-const gfeedRegex = new RegExp(/^\s*gfeed\.\s*/);
-const matchRegex = new RegExp(/^\s*match:?\s*/);
-const feedbackRegex = new RegExp(/^\s*Feedback:\s*/);
+const answerRegex = new RegExp(/^\s*answer:\s*/i);
+const gfeedRegex = new RegExp(/^\s*gfeed\.\s*/i);
+const matchRegex = new RegExp(/^\s*match:?\s*/i);
+const feedbackRegex = new RegExp(/^\s*feedback:\s*/i);
 const letterRegex = new RegExp(/^\s*(\w)\.\s*/);
 
 const aikenToMoodleXML = (contents, callback) => {
@@ -25,7 +25,7 @@ const aikenToMoodleXML = (contents, callback) => {
         questionIndex = 2;
         [, question.question] = lines;
       }
-      question.question = question.question.replace(/\r/, '');
+      question.question = question.question ? question.question.replace(/\r/, '') : '';
       for (let i = questionIndex; i < lines.length; i += 1) {
         if (answerRegex.test(lines[i])) {
           question.correctAnswer = lines[i]
@@ -43,7 +43,7 @@ const aikenToMoodleXML = (contents, callback) => {
             question.single = question.correctAnswer.length === 1;
             question.correctAnswer = question.correctAnswer.map((r) => {
               try {
-                if (Number.isNaN(Number(r)) && !!r !== r) {
+                if (Number.isNaN(Number(r)) && Boolean(r) !== r) {
                   return r.replace(/\s/g, '').toLowerCase().charCodeAt(0) - 97;
                 } else if (!Number.isNaN(Number(r))) {
                   return r - 1;
@@ -71,11 +71,12 @@ const aikenToMoodleXML = (contents, callback) => {
       }
       if (question.type === 'shortanswer' || question.type === 'numerical') {
         // eslint-disable-next-line  no-confusing-arrow
-        question.answers = question.correctAnswer.map(e => (e && typeof e === 'string') ? e.replace(/^(\s)*/, '') : e);
+        question.answers = (question.correctAnswer || []).map(e => (e && typeof e === 'string') ? e.replace(/^(\s)*/, '') : e);
         question.correctAnswer = (question.correctAnswer || []).map((a, i) => i);
       } else if (question.type === 'truefalse') {
         question.answers = ['True', 'False'];
-        question.correctAnswer = question.correctAnswer && question.correctAnswer[0] ? [0] : [1];
+        const correctAnswerExists = question.correctAnswer && question.correctAnswer.length;
+        question.correctAnswer = (correctAnswerExists && question.correctAnswer[0]) ? [0] : [1];
       }
       return question;
     })));

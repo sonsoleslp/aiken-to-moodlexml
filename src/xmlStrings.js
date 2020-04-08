@@ -7,12 +7,13 @@ const moodleString = (questions) => { return `<?xml version="1.0" encoding="UTF-
 		</category>
 	</question>
 ${questions.map((q,i)=>{
-	return question(i,q);
+	return question(i, q);
 }).join("\n")}
 </quiz>`};
 
 
-const question = (index,{type, question, answers, correctAnswer, useLetters, feedback, single}) => { return `	<!-- Question entry ${index} -->
+const question = (index, {type, question, answers, correctAnswer, useLetters, feedback, single}) => { 
+	return `	<!-- Question entry ${index} -->
 	<question type="${type}">
 		<name>
 		    <text><![CDATA[${question}]]></text>
@@ -28,20 +29,21 @@ const question = (index,{type, question, answers, correctAnswer, useLetters, fee
 
 const questionType = (type, question, answers, correctAnswer, useLetters, feedback, single) => {
 	if (type === 'matching' || type === "order"){
-		return `${(answers||[]).map((a,i) => {
-		return `<subquestion>
+		return `${(answers || []).map((a,i) => {
+			return `<subquestion>
 			<text><![CDATA[${a}]]></text>
-			<answer>
-		        <text><![CDATA[${correctAnswer[i]}]]></text>
-		    </answer>
-		</subquestion>`
+			${correctAnswer && correctAnswer.length ? (`
+				<answer>
+					<text><![CDATA[${correctAnswer[i]}]]></text>
+				</answer>`) : null}
+			</subquestion>
+			`
 	}).join("")}`;
 
 	} else {
 		return `${(answers||[]).map((a,i) => {
-		const fraction = (correctAnswer || []).indexOf(i) === -1 ? "0" : "100";
-		return `
-		<answer fraction="${fraction}">
+			const fraction = (correctAnswer || []).indexOf(i) === -1 ? "0" : "100";
+				return `		<answer fraction="${fraction}">
     		<text><![CDATA[${a}]]></text>
 		</answer>`;
 	}).join("")}

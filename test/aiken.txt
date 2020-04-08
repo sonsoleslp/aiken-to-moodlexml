@@ -6,6 +6,7 @@ D. If another incident of the same type occurs again after a Change has been mad
 Answer: A
 Feedback: Obviously
 
+
 multichoice
 2. When an organization decides to control the flow of incident information within the IT organization, 
 which ITIL process would it be putting in place?
@@ -39,10 +40,17 @@ Typically the incident will be resolved automatically before the customer recogn
 
 numerical
 8. How many books are in ITIL V3? Answer only with a number.
-Answer: 5
+Answer: 5, 7
+
+order
+10. Place in ascending order
+1. 200
+2. 500
+3. 100
+ANSWER: 3,1,2
 
 matching
-Match cities and countries
+11. Match cities and countries
 1. Yakutsk
 match: Russia
 2. Tampere
@@ -51,19 +59,40 @@ match: Finland
 match: China
 Feedback: Good job!
 
-order
-10. Place in ascending order
-1. 200
-2. 500
-3. 100
-Answer: 3,1,2
+numerical
+12. How many books are in ITIL V3? Answer only with a number. No answer
+
+shortanswer
+13. How many books are in ITIL V3? Answer only with a number. No answer
+
+shortanswer
+14. How many books are in ITIL V3? Answer only with a number. No answer
+Answer:
 
 multichoice
-2. When an organization decides to control the flow of incident information within the IT organization, 
-which ITIL process would it be putting in place?
-1. Availability Management
-2. Change Management
-3. Incident Management
-4. Problem Management
-Answer: 3,4
-gfeed. Yes!
+
+15. When must a Post Implementation Review take place?
+0. After every Change
+1. At the request of the person who submitted the Change request
+2. In case of emergency changes
+3. If another incident of the same type occurs again after a Change has been made
+Answer: A
+Feedback: Obviously
+
+multichoice
+16. When must a Post Implementation Review take place?
+r. After every Change
+1. At the request of the person who submitted the Change request
+2. In case of emergency changes
+3. If another incident of the same type occurs again after a Change has been made
+Answer: A
+Feedback: Obviously
+
+multichoice
+16. When must a Post Implementation Review take place?
+1. After every Change
+2. At the request of the person who submitted the Change request
+3. In case of emergency changes
+4. If another incident of the same type occurs again after a Change has been made
+Answer: 4
+Feedback: Obviously
