@@ -18,7 +18,7 @@ const question = (index, {type, question, answers, correctAnswer, useLetters, fe
 		<name>
 		    <text><![CDATA[${question}]]></text>
 		</name>
-		<questiontext>
+		<questiontext format="html">
 		    <text><![CDATA[${question}]]></text>
 		</questiontext>
 		${questionType(type, question, answers, correctAnswer, useLetters, feedback, single)}
