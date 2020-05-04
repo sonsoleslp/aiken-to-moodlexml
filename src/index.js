@@ -15,7 +15,7 @@ const aikenToMoodleXML = (contents, callback) => {
         type: 'multichoice',
         question: ''
       };
-      const lines = exercise.split(/\n/);
+      const lines = exercise.split(/\n+/);
       const firstLine = lines[0].replace(/\s/, '');
       const exerciseIndex = availExercises.indexOf(firstLine);
       let questionIndex = 1;
@@ -25,7 +25,10 @@ const aikenToMoodleXML = (contents, callback) => {
         questionIndex = 2;
         [, question.question] = lines;
       }
+
       question.question = question.question ? question.question.replace(/\r/, '') : '';
+
+
       for (let i = questionIndex; i < lines.length; i += 1) {
         if (answerRegex.test(lines[i])) {
           question.correctAnswer = lines[i]
@@ -67,6 +70,8 @@ const aikenToMoodleXML = (contents, callback) => {
           question.feedback = lines[i].replace(feedbackRegex, '').replace('\r', '');
         } else if (matchRegex.test(lines[i])) {
           question.correctAnswer = [...(question.correctAnswer || []), lines[i].replace(matchRegex, '').replace('\r', '')];
+        } else {
+          question.question += `\n${lines[i]}`;
         }
       }
       if (question.type === 'shortanswer' || question.type === 'numerical') {

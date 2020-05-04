@@ -17,6 +17,12 @@ D. Problem Management
 Answer: C, D
 gfeed. Duh!
 
+
+
+
+
+
+
 essay
 3. The new role of social blogging in e-learning.
 gfeed. Write something about Twitter, Facebook from the aspects of teaching and colloboration.
@@ -96,3 +102,15 @@ multichoice
 4. If another incident of the same type occurs again after a Change has been made
 Answer: 4
 Feedback: Obviously
+
+multichoice
+Para establecer las relaciones entre las tablas de una base de datos utilizo las siguientes sentencias:
+<pre>
+belongsTo(<modelo>, <atributos>)
+hasMany(<modelo>, <atributos>)
+</pre>
+¿Qué relación estoy estableciendo?
+A. 1 a 1
+B. N a N
+C. 1 a N
+ANSWER: C

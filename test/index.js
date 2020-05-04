@@ -10,6 +10,7 @@ const assert = require("chai").assert;
 describe('Test1', () => {
   it('should contain sth', () => {
     aikenToMoodleXML(str, (res,err)=>{
+    	console.log(res)
       assert(!!res,true)
     });
   });
