@@ -1,13 +1,21 @@
 const moodleString = require('./xmlStrings');
 
-const availExercises = ['multichoice', 'essay', 'shortanswer', 'truefalse', 'description', 'cloze', 'numerical', 'matching', 'order'];
+const availExercises = ['category', 'multichoice', 'essay', 'shortanswer', 'truefalse', 'description', 'cloze', 'numerical', 'matching', 'order'];
 const answerRegex = new RegExp(/^\s*answer:\s*/i);
 const gfeedRegex = new RegExp(/^\s*gfeed\.\s*/i);
 const matchRegex = new RegExp(/^\s*match:?\s*/i);
 const feedbackRegex = new RegExp(/^\s*feedback:\s*/i);
-const letterRegex = new RegExp(/^\s*(\w)\.\s*/);
+const letterRegex = new RegExp(/^\s*(\w)(:?\.|\))\s*/);
+const addNSNC = (question, options) => {
+  if (options.nsnc) {
+    question.answers.push(options.lang === 'es' ? 'NS/NC' : 'n/a');
+  }
+  if (options.penalty) {
+    question.fractions.push(0);
+  }
+};
 
-const aikenToMoodleXML = (contents, callback) => {
+const aikenToMoodleXML = (contents, callback, options = {}) => {
   const splitExercises = contents.split(/\n\s*\n/);
   try {
     callback(moodleString(splitExercises.map((exercise) => {
@@ -27,10 +35,13 @@ const aikenToMoodleXML = (contents, callback) => {
       }
 
       question.question = question.question ? question.question.replace(/\r/, '') : '';
-
-
+      if (question.type === 'category') {
+        question.categories = [question.question];
+      }
       for (let i = questionIndex; i < lines.length; i += 1) {
-        if (answerRegex.test(lines[i])) {
+        if (question.type === 'category') {
+          question.categories.push(lines[i]);
+        } else if (answerRegex.test(lines[i])) {
           question.correctAnswer = lines[i]
             .replace(answerRegex, '')
             .replace('\r', '')
@@ -78,10 +89,28 @@ const aikenToMoodleXML = (contents, callback) => {
         // eslint-disable-next-line  no-confusing-arrow
         question.answers = (question.correctAnswer || []).map(e => (e && typeof e === 'string') ? e.replace(/^(\s)*/, '') : e);
         question.correctAnswer = (question.correctAnswer || []).map((a, i) => i);
+      } else if (question.type === 'multichoice') {
+        if (options.penalty) {
+          question.fractions = question.answers.map((_a, j) => {
+            if (question.correctAnswer.indexOf(j) === -1) {
+              return -Math.round(10000 / (question.answers.length - 1)) / 100;
+            }
+            return Math.round(10000 / question.correctAnswer.length) / 100;
+          });
+        }
+        if (question.single) {
+          addNSNC(question, options);
+        }
       } else if (question.type === 'truefalse') {
-        question.answers = ['True', 'False'];
+        question.type = 'multichoice';
+        question.answers = [options.lang !== 'es' ? 'True' : 'Verdadero', options.lang !== 'es' ? 'False' : 'Falso'];
         const correctAnswerExists = question.correctAnswer && question.correctAnswer.length;
         question.correctAnswer = (correctAnswerExists && question.correctAnswer[0]) ? [0] : [1];
+        if (options.penalty) {
+          question.fractions = (correctAnswerExists && question.correctAnswer[0]) ?
+            [100, -100] : [-100, 100];
+        }
+        addNSNC(question, options);
       }
       return question;
     })));

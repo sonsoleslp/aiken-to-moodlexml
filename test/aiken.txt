@@ -1,3 +1,11 @@
+category
+CORE
+Por defecto en CORE
+Examen
+MVC
+Pruebas
+
+
 1. When must a Post Implementation Review take place?
 A. After every Change
 B. At the request of the person who submitted the Change request
@@ -16,10 +24,6 @@ C. Incident Management
 D. Problem Management
 Answer: C, D
 gfeed. Duh!
-
-
-
-
 
 
 
@@ -76,7 +80,6 @@ shortanswer
 Answer:
 
 multichoice
-
 15. When must a Post Implementation Review take place?
 0. After every Change
 1. At the request of the person who submitted the Change request

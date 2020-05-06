@@ -1,18 +1,29 @@
 /* eslint-disable */
 const moodleString = (questions) => { return `<?xml version="1.0" encoding="UTF-8"?>
 <quiz>
-	<question type="category">
-		<category>
-		  <text>__Category Name__</text>
-		</category>
-	</question>
 ${questions.map((q,i)=>{
 	return question(i, q);
 }).join("\n")}
 </quiz>`};
 
+const category = (category) => {
+	return `	<question type="category">
+		<category>
+			<text>${category}</text>
+		</category>
+	</question>
+`;
+}
 
-const question = (index, {type, question, answers, correctAnswer, useLetters, feedback, single}) => { 
+const categoryHierarchy = (categories) => {
+	const defCats = ["$course$/top"].concat(categories);
+	return defCats.map((c,i)=>category(defCats.slice(0,i+1).join("/"))).join("");
+}
+
+const question = (index, {type, question, categories, answers, correctAnswer, fractions, useLetters, feedback, single}) => { 
+	if (type === "category"){
+		return categoryHierarchy(categories);
+	}
 	return `	<!-- Question entry ${index} -->
 	<question type="${type}">
 		<name>
@@ -21,21 +32,20 @@ const question = (index, {type, question, answers, correctAnswer, useLetters, fe
 		<questiontext format="html">
 		    <text><![CDATA[${question}]]></text>
 		</questiontext>
-		${questionType(type, question, answers, correctAnswer, useLetters, feedback, single)}
-		${feedback ? `<generalfeedback><text>${feedback}</text></generalfeedback>` : ``}
+		${questionType(type, question, answers, correctAnswer, fractions, useLetters, feedback, single)}${feedback ? `\n\t\t<generalfeedback><text>${feedback}</text></generalfeedback>` : ``}
 	</question>
 `.replace('\n\t*\n', '');
 }
 
-const questionType = (type, question, answers, correctAnswer, useLetters, feedback, single) => {
+const questionType = (type, question, answers, correctAnswer, fractions, useLetters, feedback, single) => {
 	if (type === 'matching' || type === "order"){
 		return `${(answers || []).map((a,i) => {
 			return `<subquestion>
 			<text><![CDATA[${a}]]></text>
-			${correctAnswer && correctAnswer.length ? (`
-				<answer>
-					<text><![CDATA[${correctAnswer[i]}]]></text>
-				</answer>`) : null}
+			${correctAnswer && correctAnswer.length ? (`<answer format="html">
+				<text><![CDATA[${correctAnswer[i]}]]></text>
+			</answer>
+				`) : '\n'}
 			</subquestion>
 			`
 	}).join("")}`;
@@ -43,12 +53,11 @@ const questionType = (type, question, answers, correctAnswer, useLetters, feedba
 	} else {
 		return `${(answers||[]).map((a,i) => {
 			const fraction = (correctAnswer || []).indexOf(i) === -1 ? "0" : "100";
-				return `		<answer fraction="${fraction}">
-    		<text><![CDATA[${a}]]></text>
-		</answer>`;
-	}).join("")}
-${single ?  `			<single>true</single>` : ``}
-${useLetters === false ? `		<answernumbering>123</answernumbering>` : ``}	`;
+				return `<answer format="html" fraction="${(fractions && fractions[i] !== undefined) ? fractions[i] : fraction}">
+    			<text><![CDATA[${a}]]></text>
+		</answer>
+		`;
+	}).join("")}${single ?  `\n\t\t<single>true</single>` : ''}${useLetters === false ? `\n\t\t<answernumbering>123</answernumbering>` : ''}	`;
 	}
 	
 };
