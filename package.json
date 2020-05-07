@@ -1,6 +1,6 @@
 {
   "name": "aiken-to-moodlexml",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Javascript library for translating Aiken into MoodleXML",
   "main": "./lib/index.js",
   "scripts": {
