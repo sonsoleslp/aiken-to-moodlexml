@@ -14,7 +14,17 @@ const addNSNC = (question, options) => {
     question.fractions.push(0);
   }
 };
-
+const escapeHtml = unsafe => unsafe
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#039;');
+// eslint-disable-next-line no-extend-native
+String.prototype.escapeCode = function () {
+  return this.replace(/<pre>(.+?)<\/pre>/gism, (_a, str) => `<pre>${escapeHtml(str)}</pre>`)
+    .replace(/<code>(.+?)<\/code>/gism, (_a, str) => `<code>${escapeHtml(str)}</code>`);
+};
 const aikenToMoodleXML = (contents, callback, options = {}) => {
   const splitExercises = contents.split(/\n\s*\n/);
   try {
@@ -69,22 +79,23 @@ const aikenToMoodleXML = (contents, callback, options = {}) => {
             });
           }
         } else if (letterRegex.test(lines[i])) {
-          question.answers = [...(question.answers || []), lines[i].replace(letterRegex, '').replace('\r', '')];
+          question.answers = [...(question.answers || []), lines[i].replace(letterRegex, '').replace('\r', '').escapeCode()];
           const match = lines[i].match(letterRegex);
           if (question.type === 'multichoice') {
             question.useLetters = question.useLetters ||
               (match && match.length && Number.isNaN(Number(match[1])));
           }
         } else if (gfeedRegex.test(lines[i])) {
-          question.feedback = lines[i].replace(gfeedRegex, '').replace('\r', '');
+          question.feedback = lines[i].replace(gfeedRegex, '').replace('\r', '').escapeCode();
         } else if (feedbackRegex.test(lines[i])) {
-          question.feedback = lines[i].replace(feedbackRegex, '').replace('\r', '');
+          question.feedback = lines[i].replace(feedbackRegex, '').replace('\r', '').escapeCode();
         } else if (matchRegex.test(lines[i])) {
-          question.correctAnswer = [...(question.correctAnswer || []), lines[i].replace(matchRegex, '').replace('\r', '')];
+          question.correctAnswer = [...(question.correctAnswer || []), lines[i].replace(matchRegex, '').replace('\r', '').escapeCode()];
         } else {
           question.question += `\n${lines[i]}`;
         }
       }
+      question.question = question.question && typeof question.question === 'string' ? question.question.escapeCode() : question.question;
       if (question.type === 'shortanswer' || question.type === 'numerical') {
         // eslint-disable-next-line  no-confusing-arrow
         question.answers = (question.correctAnswer || []).map(e => (e && typeof e === 'string') ? e.replace(/^(\s)*/, '') : e);
@@ -113,7 +124,7 @@ const aikenToMoodleXML = (contents, callback, options = {}) => {
         addNSNC(question, options);
       }
       return question;
-    })));
+    }), options));
   } catch (e) {
     callback(undefined, e);
   }

@@ -5,6 +5,28 @@ Examen
 MVC
 Pruebas
 
+multichoice
+A continuación se muestra una página web estática que se envía desde un servidor express a un cliente Firefox: 
+<pre>
+<!doctype html>
+<html>
+<head>
+<script>
+  console.log('Mi mensaje interesante');
+</script>
+</head>
+<body>
+Página HTML completa.
+</body>
+</html>
+</pre>
+Seleccione la respuesta correcta:
+A. El mensaje “Mi mensaje interesante” se imprime en el servidor express antes de enviar la página
+B. El mensaje “Mi mensaje interesante” se imprime en el servidor express después de enviar la página
+C. El mensaje “Mi mensaje interesante” se imprime en la consola del cliente Firefox
+D. Hay un error en el HTML y el mensaje no se imprime, de hecho se imprime un mensaje de error
+ANSWER: C
+
 
 1. When must a Post Implementation Review take place?
 A. After every Change
