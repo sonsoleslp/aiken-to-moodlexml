@@ -62,6 +62,12 @@ truefalse
 Answer: True
 Feedback: Steve Jobs is the CEO of Apple, which he co-founded in 1976.
 
+truefalse
+5. The founder of "Apple" was Bill Gates.
+Answer: False
+Feedback: Steve Jobs is the CEO of Apple, which he co-founded in 1976.
+
+
 description
 6. Open Office is the alternative to Microsoft Office.
 

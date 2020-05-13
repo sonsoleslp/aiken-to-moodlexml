@@ -113,12 +113,14 @@ const aikenToMoodleXML = (contents, callback, options = {}) => {
           addNSNC(question, options);
         }
       } else if (question.type === 'truefalse') {
-        question.type = 'multichoice';
+        if (options.nsnc) {
+          question.type = 'multichoice';
+        }
         question.answers = [options.lang !== 'es' ? 'True' : 'Verdadero', options.lang !== 'es' ? 'False' : 'Falso'];
         const correctAnswerExists = question.correctAnswer && question.correctAnswer.length;
         question.correctAnswer = (correctAnswerExists && question.correctAnswer[0]) ? [0] : [1];
         if (options.penalty) {
-          question.fractions = (correctAnswerExists && question.correctAnswer[0]) ?
+          question.fractions = (correctAnswerExists && question.correctAnswer[0] === 0) ?
             [100, -100] : [-100, 100];
         }
         addNSNC(question, options);

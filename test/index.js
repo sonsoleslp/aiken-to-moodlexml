@@ -12,7 +12,7 @@ describe('Test1', () => {
     aikenToMoodleXML(str, (res,err)=>{
     	console.log(res);
 		assert(!!res,true);
-    }, {nsnc: true, penalty: true, lang: "es", shuffle: true});
+    }, {nsnc: false, penalty: false, lang: "es", shuffle: true});
   });
 
 }); 
